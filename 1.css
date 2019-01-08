@@ -1,0 +1,220 @@
+.box{
+    width:100%;
+    height:700px;
+    font-family: 'Fira Sans', sans-serif;
+    text-align: center;
+
+    position: relative;
+}
+.box:before,
+.box:after{
+    content: '';
+    background-color: rgba(255,255,255,0.7);
+    height: 25%;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    top: -100%;
+    transition: all 0.3s;
+}
+.box:after{ top: 100%; }
+.box:hover:before{
+    transform: translateX(-50%) translateY(0);
+    top: 0;
+}
+.box:hover:after{
+    transform: translateX(-50%) translateY(0);
+    top: auto;
+    bottom: 0;
+}
+.box:hover:before,
+.box:hover:after{
+    height: 50%;
+    opacity: 1;
+    animation: animate 0.5s linear;
+}
+.box img{
+    width:100%;
+    height:700px;
+    
+    height: auto;
+}
+.box .box-content{
+    width: 100%;
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateX(-50%) translateY(-50%);
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    z-index: 1;
+    transition: all 0.4s ease 0.1s;
+}
+.box:hover .box-content{
+    opacity: 1;
+    filter: blur(0);
+    top: 50%;
+}
+.box .title{
+    color: #4834d4;
+    font-size: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0;
+}
+.box .post{
+    color: #444;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.box .icon{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    opacity: 0;
+    transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    z-index: 1;
+    transition: all 0.3s ease 0.3s;
+}
+.box:hover .icon{ opacity: 1; }
+.box .icon li{ display: inline-block; }
+.box .icon li a{
+    color: #fff;
+    background-color: #4834d4;
+    line-height: 25px;
+    height: 30px;
+    width: 30px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 3px -3px 5px #555;
+    display: block;
+    transition: all 0.3s;
+}
+.box .icon li a:hover{
+    color: #4834d4;
+    background-color: #fff;
+    border-color: #4834d4;
+}
+@keyframes animate{
+    80%{ width: 90%; }
+    85%{ width: 95%; }
+    93%{ width: 85%; }
+    100%{ width: 100%; }
+}
+@media only screen and (max-width:990px){
+    .box{ margin-bottom: 30px; }
+}
+@media only screen and (max-width:479px){
+    .box .title{ font-size: 20px; }
+}
+.img{
+
+    width:100%;
+    height: 120%;
+}
+.img:hover{
+    background-color:#ffffffba;
+}
+.rest{
+    /*opacity: 0;*/
+    margin-top:-50px;
+}
+.text{
+    transition:0.2s;
+}
+.text:hover{
+    color:white;
+}
+.little{
+    max-width:600px;
+}
+.middle{
+    text-align: center;
+}
+
+$background: #1f1d1d;
+$main: darken(#c93d1b,15%); //#04322e;
+$alt1: #c93d1b; //#0F0;
+$alt2: #f8c43a;
+
+html, body { background: $background; color: $main; }
+html { height: 100%; display: flex; }
+body { margin: auto; }
+
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:800');
+
+.skid {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 800;
+  font-size: calc( 90vw / var(--char-total) );
+  transform: skewY(-5deg) translateY(0%);
+  
+  
+  animation: slide-down 2.5s cubic-bezier(.7,.0,.2,1) alternate both infinite;
+
+  @keyframes slide-down {
+    100% { transform: skewY(-5deg) translateY(50%) ; }
+  }
+  
+  .word,
+  .char {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .word:before,
+  .word:after,
+  .char:before,
+  .char:after {
+    content: attr(data-char);
+    visibility: visible;
+    color: $alt2;
+    position: absolute;
+    left: 0;
+    display: block;
+    top: auto;
+    bottom: 0;
+    z-index: 3;
+    animation: expand 2.5s cubic-bezier(.6,.0,.15,1) alternate both infinite;
+    
+    @keyframes expand {
+      0%, 20% { transform: translateY(0%); }
+    }
+  }
+  
+  
+  .word:before,
+  .word:after {
+    content: attr(data-word);
+    z-index: 2;
+  }
+  
+  .word:before {
+    color: $alt1;
+    transform: translateY(-45%);
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 0 60%);
+  }
+  
+  .word:after {
+    color: lighten($alt1,10%);
+    transform: translateY(-75%); 
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  }
+  
+  .char:before {
+    color: lighten($alt2,0%);
+    transform: translateY(-95%); 
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+  .char:after {
+    color: lighten($alt2,20%);
+    transform: translateY(-105%);
+    clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%);
+  }
+}
